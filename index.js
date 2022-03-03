@@ -518,7 +518,8 @@ module.exports = {
 							let storesAttributes = currentItem.storesAttributes;
 							if (storesAttributes) {
 								for (let att in storesAttributes) {
-									if (storesAttributes.hasOwnProperty(att)) {
+									/* eslint-disable no-prototype-builtins */
+									if (Object.prototype.hasOwnProperty(storesAttributes, att)) {
 										const storedAttr = params.Item[self.attributesName][att];
 										if (typeof storesAttributes[att] === "function") {
 											if (!storesAttributes[att](storedAttr)) {
@@ -609,7 +610,8 @@ module.exports = {
 							
 							if (currentItem.hasAttributes) {
 								for (let att in currentItem.hasAttributes) {
-									if (currentItem.hasAttributes.hasOwnProperty(att)) {
+									/* eslint-disable no-prototype-builtins */
+									if (Object.prototype.hasOwnProperty(currentItem.hasAttributes, att)) {
 										if (typeof currentItem.hasAttributes[att] === "function") {
 											if (!currentItem.hasAttributes[att](response.sessionAttributes[att])) {
 												context.assert({message: "the attribute " + att + " did not contain the correct value. Value was: " + response.sessionAttributes[att]});
